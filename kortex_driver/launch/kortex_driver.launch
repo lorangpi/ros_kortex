@@ -10,12 +10,17 @@
 
     <!-- Gripper configuration -->
     <!-- Default gripper for Gen3 is none, default gripper for Gen3 lite is gen3_lite_2f -->
-    <arg name="gripper" default="" if="$(eval arg('arm') == 'gen3')"/>
+    <arg name="gripper" default="robotiq_2f_85" if="$(eval arg('arm') == 'gen3')"/>
     <arg name="gripper" default="gen3_lite_2f" if="$(eval arg('arm') == 'gen3_lite')"/>
+    
 
     <!-- Namespace -->
     <arg name="robot_name" default="my_$(arg arm)"/>
     <arg name="prefix" default=""/>
+
+    <param name="robot_description" command="$(find xacro)/xacro --inorder $(find kortex_description)/robots/gen3_robotiq_2f_85.xacro"/>
+    <param name="robot_description_semantic" textfile="$(find kortex_description)/robots/gen3_robotiq_2f_85_move_it_config/config/7dof/gen3_robotiq_2f_85.srdf.xacro"/>
+
 
     <!-- Kortex API options -->
     <arg name="ip_address" default="192.168.1.10"/>
